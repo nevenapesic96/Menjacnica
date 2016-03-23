@@ -6,10 +6,10 @@ import menjacnica.interfejs.menjacnicaInterfejs;
 
 public class Aparat implements menjacnicaInterfejs{
 
-	public void dodajKurs(GregorianCalendar datum, Kurs kurs, Valuta valuta) {
+	public void dodajKurs(Kurs kurs, Valuta valuta) {
 		boolean postoji=false;
 		for (int i = 0; i < valuta.getKursevi().size(); i++) {
-			if(valuta.getKursevi().get(i).getDatum().equals(datum))
+			if(valuta.getKursevi().get(i).getDatum().equals(kurs.getDatum()))
 				postoji=true;
 		}
 		if(postoji)
@@ -19,15 +19,15 @@ public class Aparat implements menjacnicaInterfejs{
 	}
 
 	
-	public void izbrisiKurs(GregorianCalendar datum, Kurs kurs, Valuta valuta) {
+	public void izbrisiKurs(GregorianCalendar datum, Valuta valuta) {
 		boolean postoji=false;
 		for (int i = 0; i < valuta.getKursevi().size(); i++) {
-			if(valuta.getKursevi().get(i).getDatum().equals(datum))
+			if(valuta.getKursevi().get(i).getDatum().equals(datum)){
 				postoji=true;
+				valuta.getKursevi().remove(valuta.getKursevi().get(i));
+			}
 		}
-		if(postoji)
-			valuta.getKursevi().remove(kurs);
-		else
+		if(!postoji)
 			System.out.println("Kurs za ovaj datum ne postoji! ");
 		
 	}
