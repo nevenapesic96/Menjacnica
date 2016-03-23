@@ -6,10 +6,13 @@ import menjacnica.interfejs.menjacnicaInterfejs;
 
 public class Aparat implements menjacnicaInterfejs{
 
-	@Override
+	
 	public void dodajKurs(GregorianCalendar datum, Kurs kurs, Valuta valuta) {
-		// TODO Auto-generated method stub
-		
+			for (int i = 0; i < valuta.getKursevi().size(); i++) {
+				if(valuta.getKursevi().get(i).getDatum().equals(datum))
+					valuta.getKursevi().remove(kurs);
+			}
+			valuta.getKursevi().add(kurs);
 	}
 
 	@Override
